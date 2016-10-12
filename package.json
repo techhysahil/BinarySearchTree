@@ -1,0 +1,22 @@
+{
+  "name": "binary-search-tree",
+  "version": "0.0.1",
+  "author": {
+    "name": "Techhysahil",
+    "email": "sahilkkrazy@gmail.com"
+  },
+  "description": "binary search tree implementations",
+  "keywords": [
+    "binary tree",
+    "binary search tree"
+  ],
+  "homepage": "https://github.com/techhysahil/BinarySearchTree",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/techhysahil/BinarySearchTree.git"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {},
+  "licence": "MIT"
+}
