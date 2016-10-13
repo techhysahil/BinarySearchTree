@@ -1,0 +1,21 @@
+{
+  "name": "Binary-search-tree",
+  "description": "BST.js is a Javascript library for Binary Search Tree.",
+  "main": "BST.js",
+  "authors": [
+    { "name": "Sahil Gupta", "email": "sahilkkrazy@gmail.com", "homepage": "http://techhysahil.com" }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "binary",
+    "tree",
+    "binary",
+    "search",
+    "tree"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/techhysahil/BinarySearchTree.git"
+  },
+  "homepage": "https://github.com/techhysahil/BinarySearchTree"
+}
