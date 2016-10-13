@@ -28,14 +28,14 @@ BST js contains the following functions:
 Let's see how it's actually works:
 
 #### JavaScript (Client Side):
-
+```javascript
 var binarySearchTree = new BST();	//initlize binary tree
-
+```
 #### Node JS (Server Side):
-
+```javascript
 var bst = require('./BST.js');
-    
 var binarySearchTree = new bst.BST()	//initlize binary tree
+``` 
 
 ### Function Usage
 
