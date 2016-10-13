@@ -1,2 +1,75 @@
-# BinarySearchTree
-Binary Search Tree in Javascript. A simple binary search tree data structure implementation in Javascript.
+# BST : BinarySearchTree
+**BST.js** is a Javascript library for Binary Search Tree. A simple binary search tree data structure implementation in Javascript. This implementation does not allow duplicate values to be inserted into the tree, ensuring that there is just one instance of each value.
+
+## Installing
+
+### Using NPM 
+
+`npm install bst`
+
+### Using Bower
+
+`bower install bst`
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+## Usage
+
+BST js contains the functions: add,contains,minValue,maxValue,removeTree,traversalTree,size,toArray,toString,maxDepth,remove. Let's see how it's actually works:
+
+### JavaScript (Client Side)
+
+```var binarySearchTree = new BST();	//initlize binary tree```
+
+### Node JS (Server Side)
+
+```var bst = require('./BST.js');```
+    
+```var binarySearchTree = new bst.BST()	//initlize binary tree```
+
+### Function Usage
+
+//Adding a node 
+```binarySearchTree.add(23);
+binarySearchTree.add(89);```
+
+//search an element
+```binarySearchTree.contains(89);```
+
+//Remove an element
+```binarySearchTree.remove(89);```
+
+//Traversing an binary search tree
+```binarySearchTree.traversalTree({type:'inorder'},callback); //For inorder traversal
+binarySearchTree.traversalTree({type:'preorder'},callback); //For preorder traversal
+binarySearchTree.traversalTree({type:'postorder'},callback); //For postorder traversal```
+
+//maximum depth of Binary search tree
+```binarySearchTree.maxDepth();```
+
+//Return binary search tree elements in array
+```binarySearchTree.toArray();```
+
+//Return binary search tree elements in string form
+```binarySearchTree.toString();```
+
+## Authors
+
+* **Sahil Gupta** - *Initial work* - [Techhysahil](https://github.com/techhysahil)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Inspiration
+* Nicholas C. Zakas (https://github.com/nzakas)
+
+
+
+
+
+
