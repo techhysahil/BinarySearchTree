@@ -3,57 +3,67 @@
 
 ## Installing
 
-### Using NPM 
+#### Using NPM:
 
 `npm install bst`
 
-### Using Bower
+#### Using Bower:
 
 `bower install bst`
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+BST js contains the following functions: 
+* add 
+* contains
+* minValue
+* removeTree
+* traversalTree
+* size
+* toArray
+* toString
+* maxDepth
+* remove etc. 
 
-## Usage
+Let's see how it's actually works:
 
-BST js contains the functions: add,contains,minValue,maxValue,removeTree,traversalTree,size,toArray,toString,maxDepth,remove. Let's see how it's actually works:
+#### JavaScript (Client Side):
 
-### JavaScript (Client Side)
+var binarySearchTree = new BST();	//initlize binary tree
 
-```var binarySearchTree = new BST();	//initlize binary tree```
+#### Node JS (Server Side):
 
-### Node JS (Server Side)
-
-```var bst = require('./BST.js');```
+var bst = require('./BST.js');
     
-```var binarySearchTree = new bst.BST()	//initlize binary tree```
+var binarySearchTree = new bst.BST()	//initlize binary tree
 
 ### Function Usage
 
+```javascript
 //Adding a node 
-```binarySearchTree.add(23);
-binarySearchTree.add(89);```
+binarySearchTree.add(23);
+binarySearchTree.add(89);
 
 //search an element
-```binarySearchTree.contains(89);```
+binarySearchTree.contains(89);
 
 //Remove an element
-```binarySearchTree.remove(89);```
+binarySearchTree.remove(89);
 
 //Traversing an binary search tree
-```binarySearchTree.traversalTree({type:'inorder'},callback); //For inorder traversal
+binarySearchTree.traversalTree({type:'inorder'},callback); //For inorder traversal
 binarySearchTree.traversalTree({type:'preorder'},callback); //For preorder traversal
-binarySearchTree.traversalTree({type:'postorder'},callback); //For postorder traversal```
+binarySearchTree.traversalTree({type:'postorder'},callback); //For postorder traversal
 
 //maximum depth of Binary search tree
-```binarySearchTree.maxDepth();```
+binarySearchTree.maxDepth();
 
 //Return binary search tree elements in array
-```binarySearchTree.toArray();```
+binarySearchTree.toArray();
 
 //Return binary search tree elements in string form
-```binarySearchTree.toString();```
+binarySearchTree.toString();
+```
 
 ## Authors
 
