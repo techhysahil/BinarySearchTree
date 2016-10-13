@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         uglify: {
             my_target: {
               files: {
-                'dest/BST.min.js': ['BST.js']
+                'dist/BST.min.js': ['BST.js']
               }
             }
         }
