@@ -5,11 +5,11 @@
 
 #### Using NPM:
 
-`npm install bst`
+`npm install Binary-search-tree`
 
 #### Using Bower:
 
-`bower install bst`
+`bower install Binary-search-tree`
 
 ## Getting Started
 
