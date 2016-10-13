@@ -16,7 +16,10 @@
     "url": "https://github.com/techhysahil/BinarySearchTree.git"
   },
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0"
+  },
   "scripts": {},
   "licence": "MIT"
 }
