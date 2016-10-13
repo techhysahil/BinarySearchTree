@@ -67,11 +67,11 @@ binarySearchTree.toString();
 
 ## Authors
 
-* **Sahil Gupta** - *Initial work* - [Techhysahil](https://github.com/techhysahil)
+* **Sahil Gupta** - [Techhysahil](https://github.com/techhysahil)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/techhysahil/BinarySearchTree/blob/master/LICENCE.md) file for details
 
 ## Acknowledgments
 
