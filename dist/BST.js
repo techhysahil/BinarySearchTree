@@ -170,7 +170,7 @@
 			        }
 			    }
 		        //start with the root
-		        this.inOrder1(obj,callback);
+		        inOrder(obj,callback);
 			}
 			if(options.type === "preorder"){
 				function preOrder(obj){

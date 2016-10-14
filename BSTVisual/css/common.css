@@ -1,0 +1,71 @@
+/*Text Input*/
+input[type="text"]{
+    height: 30px;
+    width: 186px; /*For this Dashboard Only*/
+    padding: 0px 0px 0px 10px;
+    font-size: 14px;
+    color: #aaa;
+    vertical-align: top;
+}
+/*Number Input*/
+input[type="number"]{
+    height: 30px;
+    width: 186px;/*For this Dashboard Only*/
+    padding: 0px 0px 0px 10px;
+    font-size: 14px;
+    color: #aaa;
+    vertical-align: top;
+}
+input:focus{
+    outline : 0px;
+}
+/*Textarea Style*/
+textarea{
+    width: 350px;
+    padding: 10px;
+    font-size: 14px;
+    color: #aaa;
+    resize: none;
+    vertical-align: top;
+}
+textarea:focus{
+    outline : 0px;
+}
+/*Button Style*/
+button{
+    height: 36px;
+    width: 200px;
+    background: #fff;
+    border: 1px solid #999;
+    font-size: 16px;
+    color: #666;
+}
+.field_container{
+    margin-bottom: 8px;
+}
+.field_container label{
+    width: 230px;
+    display: inline-block;
+    font-size: 18px;
+}
+.center{
+    text-align: center;
+}
+button{
+    /*box-shadow: */
+}
+button:focus{
+    outline: 0px;
+}
+/*Select Control Style*/
+select{
+    background: transparent;
+    border: 1px solid #999;
+    font-size: 14px;
+    height: 36px;
+    padding: 5px;
+    width: 200px;
+}
+select:focus{
+    outline: 0px;
+}
