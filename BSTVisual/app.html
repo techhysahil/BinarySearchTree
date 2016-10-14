@@ -97,12 +97,11 @@
 </head>
 <body>
 	<div class="tree">
-		<div id="Binnary-tree">
-
-		</div>
+		<div id="Binnary-tree"></div>
 	</div>
 
 	<script type="text/javascript">
+		var ppp = {"root":60,"tree":{"element":60,"leftchild":{"element":41,"leftchild":{"element":16,"leftchild":null,"rightchild":{"element":25,"leftchild":null,"rightchild":null}},"rightchild":{"element":53,"leftchild":{"element":46,"leftchild":{"element":42,"leftchild":null,"rightchild":null},"rightchild":null},"rightchild":{"element":55,"leftchild":null,"rightchild":null}}},"rightchild":{"element":74,"leftchild":{"element":65,"leftchild":{"element":63,"leftchild":{"element":62,"leftchild":null,"rightchild":null},"rightchild":{"element":64,"leftchild":null,"rightchild":null}},"rightchild":{"element":70,"leftchild":null,"rightchild":null}},"rightchild":null}}};
 		var treeJSON = {
 			root: 70,
 			tree: {
@@ -143,7 +142,7 @@
 		var treewraper = document.getElementById('Binnary-tree'),
 			leftChildNode,
 			rightChildNode,
-			tree = treeJSON.tree,
+			tree = ppp.tree,
 
 		textNode = document.createTextNode("text node");	
 
