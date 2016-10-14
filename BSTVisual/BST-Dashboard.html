@@ -117,6 +117,10 @@
 
 	<!-- BST.JS Import -->
 	<script type="text/javascript" src="js/BST.js"></script>
+
+	<!-- SweetAlert Dependency -->
+	<script src="./bower_components/sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./bower_components/sweetalert/dist/sweetalert.css">
 </head>
 <body>
 	<div class="left_panel">
@@ -172,13 +176,28 @@
 	function insertNumberToTree(e){
 		e.preventDefault();
 		var eleValue = document.getElementById('insertnumber').value;
-		treeJSON.add(eleValue);
-		//Delete previous Tree
-		document.getElementById('Binnary-tree').innerHTML = "";
-		//Build new tree with fresh Data
-		constructBinaryTree(treeJSON);
-		//Clear Text field
-		document.getElementById('insertnumber').value = "";
+		if(eleValue){
+			treeJSON.add(eleValue);
+			//Delete previous Tree
+			document.getElementById('Binnary-tree').innerHTML = "";
+			//Build new tree with fresh Data
+			constructBinaryTree(treeJSON);
+			//Clear Text field
+			document.getElementById('insertnumber').value = "";	
+		}else{
+			swal({   
+				title: "Are you Crazy?",   
+				text: "Add some value in text field at laest!",   
+				type: "warning",   
+				showCancelButton: false,   
+				confirmButtonColor: "#DD6B55",   
+				confirmButtonText: "Close Me",   
+				closeOnConfirm: true 
+			}, function(){   
+				swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+			});
+		}
+		
 	}
 
 	function deleteNumberFromTree(e){
