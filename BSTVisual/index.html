@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BST Tree Visualizer</title>
+	<style type="text/css">
+		element{
+			padding: 6px;
+		    border: 1px solid #999;
+		    display: block;
+		    width: 20px;
+		    margin: 0 auto;
+		    border-radius: 50%;
+		}
+		lchild,rchild{
+			margin-top: 50px;
+		    display: block;
+		    width: 50%;
+		    float: left;
+		    position: relative;
+		}
+		.node::after{
+			content: "";
+		    position: absolute;
+		    height: 138px;
+		    width: 2px;
+		    background-color: #999;
+		    left: 38%;
+		    transform: rotate(60deg);
+		    top: -2px;
+		}
+		/*.node::after{
+			content: "";
+		    position: absolute;
+		    height: 80px;
+		    width: 3px;
+		    background-color: #999;
+		    left: 36%;
+		    transform: rotate(40deg);
+		    top: 15px;
+		}*/
+	</style>
+</head>
+<body>
+	<div class="node">
+		<element>30</element>
+		<lchild>
+			<div class="node">
+				<element>15</element>
+				<lchild>
+					<div class="node">
+						<element>15</element>
+						<lchild>
+							<div class="node">
+								<element>15</element>
+								<lchild></lchild>
+								<rchild></rchild>
+							</div>
+						</lchild>
+						<rchild>
+							<div class="node">
+								<element>15</element>
+								<lchild>
+									<div class="node">
+										<element>15</element>
+										<lchild></lchild>
+										<rchild></rchild>
+									</div>
+								</lchild>
+								<rchild></rchild>
+							</div>
+						</rchild>
+					</div>
+				</lchild>
+				<rchild>
+					<div class="node">
+						<element>15</element>
+						<lchild></lchild>
+						<rchild></rchild>
+					</div>
+				</rchild>
+			</div>
+		</lchild>
+		<rchild>
+			<div class="node">
+				<element>50</element>
+				<lchild></lchild>
+				<rchild></rchild>
+			</div>
+		</rchild>
+	</div>
+</body>
+</html>

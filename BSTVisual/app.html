@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body {
+		  font-family: sans-serif;
+		  font-size: 15px;
+		}
+		.tree ul {
+		  position: relative;
+		  padding: 1em 0;
+		  white-space: nowrap;
+		  margin: 0 auto;
+		  text-align: center;
+		}
+		.tree ul::after {
+		  content: '';
+		  display: table;
+		  clear: both;
+		}
+
+		.tree li {
+		  display: inline-block;
+		  vertical-align: top;
+		  text-align: center;
+		  list-style-type: none;
+		  position: relative;
+		  padding: 1em .5em 0 .5em;
+		}
+		.tree li::before, .tree li::after {
+		  content: '';
+		  position: absolute;
+		  top: 0;
+		  right: 50%;
+		  border-top: 1px solid #ccc;
+		  width: 50%;
+		  height: 1em;
+		}
+		.tree li::after {
+		  right: auto;
+		  left: 50%;
+		  border-left: 1px solid #ccc;
+		}
+		.tree li:only-child::after, .tree li:only-child::before {
+		  display: none;
+		}
+		.tree li:only-child {
+		  padding-top: 0;
+		}
+		.tree li:first-child::before, .tree li:last-child::after {
+		  border: 0 none;
+		}
+		.tree li:last-child::before {
+		  border-right: 1px solid #ccc;
+		  border-radius: 0 5px 0 0;
+		}
+		.tree li:first-child::after {
+		  border-radius: 5px 0 0 0;
+		}
+
+		.tree ul ul::before {
+		  content: '';
+		  position: absolute;
+		  top: 0;
+		  left: 50%;
+		  border-left: 1px solid #ccc;
+		  width: 0;
+		  height: 1em;
+		}
+
+		.tree li a {
+		  border: 1px solid #ccc;
+		  padding: .5em .75em;
+		  text-decoration: none;
+		  display: inline-block;
+		  border-radius: 5px;
+		  color: #333;
+		  position: relative;
+		  top: 1px;
+		}
+
+		.tree li a:hover,
+		.tree li a:hover + ul li a {
+		  background: #e9453f;
+		  color: #fff;
+		  border: 1px solid #e9453f;
+		}
+
+		.tree li a:hover + ul li::after,
+		.tree li a:hover + ul li::before,
+		.tree li a:hover + ul::before,
+		.tree li a:hover + ul ul::before {
+		  border-color: #e9453f;
+		}
+	</style>
+</head>
+<body>
+	<div class="tree">
+		<div id="Binnary-tree">
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var treeJSON = {
+			root: 70,
+			tree: {
+				element: 70,
+				leftchild: {
+					element: 40,
+					leftchild: {
+						element: 20,
+						leftchild: null,
+						rightchild: null
+					},
+					rightchild: {
+						element: 30,
+						leftchild: null,
+						rightchild: null
+					}
+				},
+				rightchild: {
+					element: 100,
+					leftchild: {
+						element: 120,
+						leftchild: null,
+						rightchild: null
+					},
+					rightchild: {
+						element: 200,
+						leftchild: null,
+						rightchild: {
+							element: 220,
+							leftchild: null,
+							rightchild: null
+						}
+					}
+				}
+			}
+		};
+
+		var treewraper = document.getElementById('Binnary-tree'),
+			leftChildNode,
+			rightChildNode,
+			tree = treeJSON.tree,
+
+		textNode = document.createTextNode("text node");	
+
+		function createAnchornode(link,innertext){
+			var aTag = document.createElement('a');
+			aTag.setAttribute('href',"#");
+			aTag.innerHTML = innertext;
+			return aTag;
+		}
+
+		treewraper = treewraper.appendChild(document.createElement('ul'))
+								.appendChild(document.createElement('li'));
+
+		function buildDOMTree(tree,treewraper){
+			for(node in tree){
+				if(node === 'element'){
+					var anchorTag = createAnchornode('#',tree['element']);
+					treewraper.appendChild(anchorTag);
+				}else if (node === 'leftchild' && tree['leftchild']){
+					if(treewraper.nodeName === 'LI'){
+						treewraper = treewraper.appendChild(document.createElement('ul'));	
+					}
+					if(tree['leftchild']){
+						leftChildNode = treewraper.appendChild(document.createElement('li'));
+						buildDOMTree(tree.leftchild, leftChildNode);
+					}
+				}else if(node === 'rightchild' && tree['rightchild']){
+					if(treewraper.nodeName === 'LI'){
+						treewraper = treewraper.appendChild(document.createElement('ul'));	
+					}
+					if(tree['rightchild']){
+						rightChildNode = treewraper
+									.appendChild(document.createElement('li'));
+						buildDOMTree(tree.rightchild,rightChildNode);
+					}
+				}
+			}
+		}
+		buildDOMTree(tree,treewraper);
+	</script>
+</body>
+</html>
