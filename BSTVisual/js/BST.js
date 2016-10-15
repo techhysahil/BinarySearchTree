@@ -239,9 +239,17 @@
 		},
 
 		//Convert BST tree to Array 
-		toArray : function(){
+		toArray : function(type){
 			var obj = this.tree,
-				arr = [];
+				arr = [],
+				method = "inorder";
+
+			if(type){
+
+			}else{
+				type = method;
+			}	
+
 			function inOrder(obj){
 		        if (obj){
 
@@ -249,7 +257,6 @@
 		                inOrder(obj.leftchild);
 		            }            
 
-		            // callback.call(this,obj.element);
 		            arr.push(obj.element);
 
 		            if (obj.right !== null){
@@ -257,9 +264,45 @@
 		            }
 		        }
 		    }
-	        //start with the root
-	        inOrder(obj);
+		    function preOrder(obj){
+		        if (obj){
 
+		            arr.push(obj.element);
+
+		            if (obj.left !== null){
+		                preOrder(obj.leftchild);
+		            }            
+
+		            if (obj.right !== null){
+		                preOrder(obj.rightchild);
+		            }
+		        }
+		    }
+		    function postOrder(obj){
+		        if (obj){
+
+		            if (obj.left !== null){
+		                postOrder(obj.leftchild);
+		            }            
+
+		            
+
+		            if (obj.right !== null){
+		                postOrder(obj.rightchild);
+		            }
+
+		            arr.push(obj.element);
+
+		        }
+		    }
+
+		    if(type === "inorder"){
+	        	inOrder(obj);	
+			}else if(type === "preorder"){
+				preOrder(obj);
+			}else if(type === "postorder"){
+				postOrder(obj);
+			}
 	        return arr;
 		},
 

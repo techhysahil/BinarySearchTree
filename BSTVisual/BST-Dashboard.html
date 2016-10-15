@@ -196,14 +196,28 @@
 	function insertNumberToTree(e){
 		e.preventDefault();
 		var eleValue = document.getElementById('insertnumber').value;
+		// Check whether user added a element to be added or not
 		if(eleValue){
-			treeJSON.add(eleValue);
-			//Delete previous Tree
-			document.getElementById('Binnary-tree').innerHTML = "";
-			//Build new tree with fresh Data
-			constructBinaryTree(treeJSON);
-			//Clear Text field
-			document.getElementById('insertnumber').value = "";	
+			var res = treeJSON.add(eleValue);
+			// Check same element is already Added
+			if(res === false){
+				swal({   
+					title: "Common Bro/bitch!!",   
+					text: "You already added same element!!",   
+					type: "warning",   
+					showCancelButton: false,   
+					confirmButtonColor: "#DD6B55",   
+					confirmButtonText: "Close Me",   
+					closeOnConfirm: true 
+				});
+			}else{
+				//Delete previous Tree
+				document.getElementById('Binnary-tree').innerHTML = "";
+				//Build new tree with fresh Data
+				constructBinaryTree(treeJSON);
+				//Clear Text field
+				document.getElementById('insertnumber').value = "";	
+			}
 		}else{
 			swal({   
 				title: "Are you Crazy?",   
@@ -213,8 +227,6 @@
 				confirmButtonColor: "#DD6B55",   
 				confirmButtonText: "Close Me",   
 				closeOnConfirm: true 
-			}, function(){   
-				swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
 			});
 		}
 		
@@ -223,71 +235,150 @@
 	function deleteNumberFromTree(e){
 		e.preventDefault();
 		var eleValue = document.getElementById('removeNumber').value;
-		treeJSON.remove(eleValue);
-		//Delete previous Tree
-		document.getElementById('Binnary-tree').innerHTML = "";
-		//Build new tree with fresh Data
-		constructBinaryTree(treeJSON);
-		//Clear Text field
-		document.getElementById('insertnumber').value = "";
+		if(treeJSON.tree){
+			treeJSON.remove(eleValue);
+			//Delete previous Tree
+			document.getElementById('Binnary-tree').innerHTML = "";
+			//Build new tree with fresh Data
+			constructBinaryTree(treeJSON);
+			//Clear Text field
+			document.getElementById('removeNumber').value = "";
+		}else{
+			swal({   
+				title: "What the Heck, no BST tree.",   
+				text: "At least build a tree to delete something from it.",   
+				type: "warning",   
+				showCancelButton: false,   
+				confirmButtonColor: "#DD6B55",   
+				confirmButtonText: "Close Me",   
+				closeOnConfirm: true 
+			});
+		}
 	}
 
 	function traverseTree(e){
 		e.preventDefault();
-		var e = document.getElementById("traverseBy"),
-			traversalMethod = e.options[e.selectedIndex].text,
-			inorderString = treeJSON.toString();
-		alert("Inorder traversal string :"+inorderString);
+
+		if(treeJSON.tree){
+			var e = document.getElementById("traverseBy"),
+				traversalMethod = e.options[e.selectedIndex].text;
+				if(traversalMethod === "inorder"){
+					inorderString = treeJSON.toArray("inorder");
+				}else if(traversalMethod === "preorder"){
+					inorderString = treeJSON.toArray("preorder");
+				}else if(traversalMethod === "postorder"){
+					inorderString = treeJSON.toArray("postorder");
+				}
+			var res ="";
+			inorderString.forEach(function(item,index){
+				if(index === 0){
+					res = item;
+				}else{
+					res = res +" --> "+item;	
+				}
+			});	
+			swal("Inorder Traverse:"," "+res);
+		}else{
+			swal({   
+				title: "What the Heck, no BST tree.",   
+				text: "What you wanna me to Traverse really !!",   
+				type: "warning",   
+				showCancelButton: false,   
+				confirmButtonColor: "#DD6B55",   
+				confirmButtonText: "Close Me",   
+				closeOnConfirm: true 
+			});
+		}
 	}
 
 	function deleteTree(e){
 		e.preventDefault();
-		treeJSON = {root : null,tree : null};
+		//Delete previous Tree
+		document.getElementById('Binnary-tree').innerHTML = "";
 		//Build new tree with fresh Data
+		treeJSON.root = null;
+		treeJSON.tree = null;
 		constructBinaryTree(treeJSON);
 	}
 
 	function treeMaxDepth(e){
 		e.preventDefault();
-		var res = treeJSON.maxDepth();
-		alert("BST MaxDepth:"+ res);
+		if(treeJSON.tree){
+			var res = treeJSON.maxDepth();
+			swal("BST MaxDepth:"," "+res);
+		}else{
+			swal({   
+				title: "What the Heck, no BST tree.",   
+				text: "At least build a tree to get the maxDepth",   
+				type: "warning",   
+				showCancelButton: false,   
+				confirmButtonColor: "#DD6B55",   
+				confirmButtonText: "Close Me",   
+				closeOnConfirm: true 
+			});
+		}
 	}
 
 	function treeSize(e){
 		e.preventDefault();
-		var res = treeJSON.size();
-		alert("BST MaxDepth:"+ res);
+		if(treeJSON.tree){
+			var res = treeJSON.size();
+			swal("Tree size:"," "+res);
+		}else{
+			swal({   
+				title: "What the Heck, no BST tree.",   
+				text: "At least build a tree to get the maxDepth",   
+				type: "warning",   
+				showCancelButton: false,   
+				confirmButtonColor: "#DD6B55",   
+				confirmButtonText: "Close Me",   
+				closeOnConfirm: true 
+			});
+		}
 	}
 
 	function generateBSTTree(e){
 		e.preventDefault();
-		var randomJSONArr = [{
-			"root":60,"tree":{"element":60,"leftchild":{"element":41,"leftchild":{"element":16,"leftchild":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}},"rightchild":{"element":25,"leftchild":null,"rightchild":null}},"rightchild":{"element":53,"leftchild":{"element":46,"leftchild":{"element":42,"leftchild":null,"rightchild":null},"rightchild":null},"rightchild":{"element":55,"leftchild":null,"rightchild":null}}},"rightchild":{"element":74,"leftchild":{"element":65,"leftchild":{"element":63,"leftchild":{"element":62,"leftchild":null,"rightchild":null},"rightchild":{"element":64,"leftchild":null,"rightchild":null}},"rightchild":{"element":70,"leftchild":null,"rightchild":null}},"rightchild":null}}
-		},
-		{"root":90,"tree":{"element":90,"leftchild":{"element":50,"leftchild":{"element":20,"leftchild":null,"rightchild":null},"rightchild":{"element":75,"leftchild":null,"rightchild":null}},"rightchild":{"element":150,"leftchild":{"element":95,"leftchild":null,"rightchild":null},"rightchild":{"element":175,"leftchild":null,"rightchild":null}}}
-		},
-		{"root":4,"tree":{"element":4,"leftchild":{"element":2,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":3,"leftchild":null,"rightchild":null}},"rightchild":{"element":6,"leftchild":{"element":5,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}}
-		},{"root":8,"tree":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}}
-		},
-		{"root":90,"tree":{"element":90,"leftchild":{"element":50,"leftchild":{"element":20,"leftchild":{"element":5,"leftchild":null,"rightchild":null},"rightchild":{"element":25,"leftchild":null,"rightchild":null}},"rightchild":{"element":75,"leftchild":{"element":66,"leftchild":null,"rightchild":null},"rightchild":{"element":80,"leftchild":null,"rightchild":null}}},"rightchild":{"element":150,"leftchild":{"element":95,"leftchild":{"element":92,"leftchild":null,"rightchild":null},"rightchild":{"element":111,"leftchild":null,"rightchild":null}},"rightchild":{"element":175,"leftchild":{"element":166,"leftchild":null,"rightchild":null},"rightchild":{"element":200,"leftchild":null,"rightchild":null}}}}
-		},{"root":8,"tree":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}}
-		},{
-			"root":60,"tree":{"element":60,"leftchild":{"element":41,"leftchild":{"element":16,"leftchild":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}},"rightchild":{"element":25,"leftchild":null,"rightchild":null}},"rightchild":{"element":53,"leftchild":{"element":46,"leftchild":{"element":42,"leftchild":null,"rightchild":null},"rightchild":null},"rightchild":{"element":55,"leftchild":null,"rightchild":null}}},"rightchild":{"element":74,"leftchild":{"element":65,"leftchild":{"element":63,"leftchild":{"element":62,"leftchild":null,"rightchild":null},"rightchild":{"element":64,"leftchild":null,"rightchild":null}},"rightchild":{"element":70,"leftchild":null,"rightchild":null}},"rightchild":null}}
-		},
-		{"root":90,"tree":{"element":90,"leftchild":{"element":50,"leftchild":{"element":20,"leftchild":null,"rightchild":null},"rightchild":{"element":75,"leftchild":null,"rightchild":null}},"rightchild":{"element":150,"leftchild":{"element":95,"leftchild":null,"rightchild":null},"rightchild":{"element":175,"leftchild":null,"rightchild":null}}}
-		},
-		{"root":4,"tree":{"element":4,"leftchild":{"element":2,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":3,"leftchild":null,"rightchild":null}},"rightchild":{"element":6,"leftchild":{"element":5,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}}
-		},{"root":8,"tree":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}}
-		},
-		{"root":90,"tree":{"element":90,"leftchild":{"element":50,"leftchild":{"element":20,"leftchild":{"element":5,"leftchild":null,"rightchild":null},"rightchild":{"element":25,"leftchild":null,"rightchild":null}},"rightchild":{"element":75,"leftchild":{"element":66,"leftchild":null,"rightchild":null},"rightchild":{"element":80,"leftchild":null,"rightchild":null}}},"rightchild":{"element":150,"leftchild":{"element":95,"leftchild":{"element":92,"leftchild":null,"rightchild":null},"rightchild":{"element":111,"leftchild":null,"rightchild":null}},"rightchild":{"element":175,"leftchild":{"element":166,"leftchild":null,"rightchild":null},"rightchild":{"element":200,"leftchild":null,"rightchild":null}}}}
-		},{"root":8,"tree":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}}
-		}];
 
-		//Delete previous Tree
-		document.getElementById('Binnary-tree').innerHTML = "";
-		//Build new tree with fresh Data
-		treeJSON = randomJSONArr[parseInt(Math.random()*10)];
-		constructBinaryTree(treeJSON);
+		var e = document.getElementById("bstType"),
+				traversalMethod = e.options[e.selectedIndex].text;
+		if(traversalMethod === "Empty"){
+			//Delete previous Tree
+			document.getElementById('Binnary-tree').innerHTML = "";
+			//Build new tree with fresh Data
+			treeJSON.root = null;
+			treeJSON.tree = null;
+			constructBinaryTree(treeJSON);
+		}else if(traversalMethod === "Random"){
+			var randomJSONArr = [{
+				"root":60,"tree":{"element":60,"leftchild":{"element":41,"leftchild":{"element":16,"leftchild":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}},"rightchild":{"element":25,"leftchild":null,"rightchild":null}},"rightchild":{"element":53,"leftchild":{"element":46,"leftchild":{"element":42,"leftchild":null,"rightchild":null},"rightchild":null},"rightchild":{"element":55,"leftchild":null,"rightchild":null}}},"rightchild":{"element":74,"leftchild":{"element":65,"leftchild":{"element":63,"leftchild":{"element":62,"leftchild":null,"rightchild":null},"rightchild":{"element":64,"leftchild":null,"rightchild":null}},"rightchild":{"element":70,"leftchild":null,"rightchild":null}},"rightchild":null}}
+			},
+			{"root":90,"tree":{"element":90,"leftchild":{"element":50,"leftchild":{"element":20,"leftchild":null,"rightchild":null},"rightchild":{"element":75,"leftchild":null,"rightchild":null}},"rightchild":{"element":150,"leftchild":{"element":95,"leftchild":null,"rightchild":null},"rightchild":{"element":175,"leftchild":null,"rightchild":null}}}
+			},
+			{"root":4,"tree":{"element":4,"leftchild":{"element":2,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":3,"leftchild":null,"rightchild":null}},"rightchild":{"element":6,"leftchild":{"element":5,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}}
+			},{"root":8,"tree":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}}
+			},
+			{"root":90,"tree":{"element":90,"leftchild":{"element":50,"leftchild":{"element":20,"leftchild":{"element":5,"leftchild":null,"rightchild":null},"rightchild":{"element":25,"leftchild":null,"rightchild":null}},"rightchild":{"element":75,"leftchild":{"element":66,"leftchild":null,"rightchild":null},"rightchild":{"element":80,"leftchild":null,"rightchild":null}}},"rightchild":{"element":150,"leftchild":{"element":95,"leftchild":{"element":92,"leftchild":null,"rightchild":null},"rightchild":{"element":111,"leftchild":null,"rightchild":null}},"rightchild":{"element":175,"leftchild":{"element":166,"leftchild":null,"rightchild":null},"rightchild":{"element":200,"leftchild":null,"rightchild":null}}}}
+			},{"root":8,"tree":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}}
+			},{
+				"root":60,"tree":{"element":60,"leftchild":{"element":41,"leftchild":{"element":16,"leftchild":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}},"rightchild":{"element":25,"leftchild":null,"rightchild":null}},"rightchild":{"element":53,"leftchild":{"element":46,"leftchild":{"element":42,"leftchild":null,"rightchild":null},"rightchild":null},"rightchild":{"element":55,"leftchild":null,"rightchild":null}}},"rightchild":{"element":74,"leftchild":{"element":65,"leftchild":{"element":63,"leftchild":{"element":62,"leftchild":null,"rightchild":null},"rightchild":{"element":64,"leftchild":null,"rightchild":null}},"rightchild":{"element":70,"leftchild":null,"rightchild":null}},"rightchild":null}}
+			},
+			{"root":90,"tree":{"element":90,"leftchild":{"element":50,"leftchild":{"element":20,"leftchild":null,"rightchild":null},"rightchild":{"element":75,"leftchild":null,"rightchild":null}},"rightchild":{"element":150,"leftchild":{"element":95,"leftchild":null,"rightchild":null},"rightchild":{"element":175,"leftchild":null,"rightchild":null}}}
+			},
+			{"root":4,"tree":{"element":4,"leftchild":{"element":2,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":3,"leftchild":null,"rightchild":null}},"rightchild":{"element":6,"leftchild":{"element":5,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}}
+			},{"root":8,"tree":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}}
+			},
+			{"root":90,"tree":{"element":90,"leftchild":{"element":50,"leftchild":{"element":20,"leftchild":{"element":5,"leftchild":null,"rightchild":null},"rightchild":{"element":25,"leftchild":null,"rightchild":null}},"rightchild":{"element":75,"leftchild":{"element":66,"leftchild":null,"rightchild":null},"rightchild":{"element":80,"leftchild":null,"rightchild":null}}},"rightchild":{"element":150,"leftchild":{"element":95,"leftchild":{"element":92,"leftchild":null,"rightchild":null},"rightchild":{"element":111,"leftchild":null,"rightchild":null}},"rightchild":{"element":175,"leftchild":{"element":166,"leftchild":null,"rightchild":null},"rightchild":{"element":200,"leftchild":null,"rightchild":null}}}}
+			},{"root":8,"tree":{"element":8,"leftchild":{"element":3,"leftchild":{"element":1,"leftchild":null,"rightchild":null},"rightchild":{"element":6,"leftchild":{"element":4,"leftchild":null,"rightchild":null},"rightchild":{"element":7,"leftchild":null,"rightchild":null}}},"rightchild":{"element":10,"leftchild":null,"rightchild":{"element":14,"leftchild":{"element":13,"leftchild":null,"rightchild":null},"rightchild":null}}}
+			}];
+
+			//Delete previous Tree
+			document.getElementById('Binnary-tree').innerHTML = "";
+			//Build new tree with fresh Data
+			treeJSON.root = randomJSONArr[parseInt(Math.random()*10)].root;
+			treeJSON.tree = randomJSONArr[parseInt(Math.random()*10)].tree;
+			constructBinaryTree(treeJSON);
+		}
 	}
 
 	// BST dashboard code End
