@@ -1,7 +1,8 @@
 # BST : BinarySearchTree
 **BST.js** is a Javascript library for Binary Search Tree. A simple binary search tree data structure implementation in Javascript. This implementation does not allow duplicate values to be inserted into the tree, ensuring that there is just one instance of each value.
 
-**Live BST Visualizer : http://techhysahil.com/Projects/BSTVisual/BST-Dashboard.html**
+**Live BST Visualizer : <a href="http://techhysahil.com/Projects/BSTVisual/BST-Dashboard.html" target="_blank">Click Here</a>
+
 ## Installing
 
 #### Using NPM:
