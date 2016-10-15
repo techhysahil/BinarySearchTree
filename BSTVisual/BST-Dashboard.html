@@ -137,7 +137,7 @@
 	</style>
 
 	<!-- BST.JS Import -->
-	<script type="text/javascript" src="js/BST.js"></script>
+	<script type="text/javascript" src="./bower_components/Binary-search-tree/dist/BST.js"></script>
 
 	<!-- SweetAlert Dependency -->
 	<script src="./bower_components/sweetalert/dist/sweetalert.min.js"></script>
@@ -236,13 +236,26 @@
 		e.preventDefault();
 		var eleValue = document.getElementById('removeNumber').value;
 		if(treeJSON.tree){
-			treeJSON.remove(eleValue);
-			//Delete previous Tree
-			document.getElementById('Binnary-tree').innerHTML = "";
-			//Build new tree with fresh Data
-			constructBinaryTree(treeJSON);
-			//Clear Text field
-			document.getElementById('removeNumber').value = "";
+			var res = treeJSON.remove(eleValue);
+
+			if(res === false){
+				swal({   
+					title: "Sorry bro/bitch!!",   
+					text: "No such element available in current Tree",   
+					type: "warning",   
+					showCancelButton: false,   
+					confirmButtonColor: "#DD6B55",   
+					confirmButtonText: "Close Me",   
+					closeOnConfirm: true 
+				});
+			}else{
+				//Delete previous Tree
+				document.getElementById('Binnary-tree').innerHTML = "";
+				//Build new tree with fresh Data
+				constructBinaryTree(treeJSON);
+				//Clear Text field
+				document.getElementById('removeNumber').value = "";
+			}
 		}else{
 			swal({   
 				title: "What the Heck, no BST tree.",   
