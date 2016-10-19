@@ -27,17 +27,65 @@
 
     //Binnary Search Tree Constructor
 	function BST(){
+		//Default Properties
 		this.root = null;
 		this.tree = null;
-	};
 
-	BST.prototype = {
+		/************************************
+				Private functions
+		************************************/
+		var inOrder= function(obj, callback){
+	        if (obj){
 
-		//restore BST constructor
-		constructor : BST,
+	            if (obj.left !== null){
+	                inOrder(obj.leftchild, callback);
+	            }            
+
+	            callback.call(this,obj.element);
+
+	            if (obj.right !== null){
+	                inOrder(obj.rightchild, callback);
+	            }
+	        }
+	    }
+
+	    var preOrder = function(obj, callback){
+	        if (obj){
+
+	        	callback.call(this,obj.element);
+
+	            if (obj.left !== null){
+	                preOrder(obj.leftchild, callback);
+	            }            
+
+	            if (obj.right !== null){
+	                preOrder(obj.rightchild, callback);
+	            }
+	        }
+	    }
+
+	    var postOrder =  function(obj, callback){
+	        if (obj){
+
+	            if (obj.left !== null){
+	                postOrder(obj.leftchild, callback);
+	            }            
+
+	            if (obj.right !== null){
+	                postOrder(obj.rightchild, callback);
+	            }
+
+	            callback.call(this,obj.element);
+
+	        }
+	    }
+
+	    /************************************
+				Exposed Functions
+		************************************/
 
 		//Add a new element
-		add : function(x){
+		this.add = function(x){
 			var flag = true,
 				data = this.tree;
 
@@ -81,10 +129,9 @@
 				}
 				
 			}
-		},
-
+		};
 		//Find whether element exist in exisiting BST
-		contains : function(x){
+		this.contains = function(x){
 			var flag = true,
 				node = this.tree;
 
@@ -103,10 +150,9 @@
 				}
 				
 			}
-		},
-
+		};
 		//Find element in BST with minimum value
-		minValue : function(){
+		this.minValue = function(){
 			var flag = true,
 				node = this.tree;
 
@@ -122,10 +168,9 @@
 				}else{
 					return false;
 				}
-		},
-
+		};
 		//Find element in BST with maximum value
-		maxValue : function(){
+		this.maxValue = function(){
 			var flag = true,
 				node = this.tree;
 
@@ -141,82 +186,33 @@
 				}else{
 					return false;
 				}
-		},
-
+		};
 		//Delete whole BST 
-		removeTree : function(){
+		this.removeTree = function(){
 			this.root = null;
 			this.tree = null;
-		},
-
+		};
 		//Traverse BST tree, you can traverse BST in inOrder,preOrder & postOrder fashion.
-		traversalTree : function(options,callback){
+		this.traversalTree = function(options,callback){
 			var obj = this.tree;
 
 			//inOrder traversal
 			if(options.type === "inorder"){
-				function inOrder(obj){
-			        if (obj){
-
-			            if (obj.left !== null){
-			                inOrder(obj.leftchild);
-			            }            
-
-			            callback.call(this,obj.element);
-
-			            if (obj.right !== null){
-			                inOrder(obj.rightchild);
-			            }
-			        }
-			    }
-		        //start with the root
 		        inOrder(obj,callback);
 			}
+			//preOrder traversal
 			if(options.type === "preorder"){
-				function preOrder(obj){
-			        if (obj){
-
-			        	callback.call(this,obj.element);
-
-			            if (obj.left !== null){
-			                preOrder(obj.leftchild);
-			            }            
-
-			            if (obj.right !== null){
-			                preOrder(obj.rightchild);
-			            }
-			        }
-			    }
-		        //start with the root
-		        preOrder(obj);
+		        preOrder(obj, callback);
 			}
+			//postOrder traversal
 			if(options.type === "postorder"){
-				function postOrder(obj){
-			        if (obj){
-
-			            if (obj.left !== null){
-			                postOrder(obj.leftchild);
-			            }            
-
-			            
-
-			            if (obj.right !== null){
-			                postOrder(obj.rightchild);
-			            }
-
-			            callback.call(this,obj.element);
-
-			        }
-			    }
-		        //start with the root
-		        postOrder(obj);
+		        postOrder(obj, callback);
 			}
-		},
-
+		};
 		//Get BST size 
-		size : function(callback){
-			var obj = this.tree;
-			var size = 0;
+		this.size = function(){
+			var obj = this.tree,
+				size = 0;
 			function inOrder(obj){
 		        if (obj){
 
@@ -224,7 +220,6 @@
 		                inOrder(obj.leftchild);
 		            }            
 
-		            // callback.call(this,obj.element);
 		            size = size+1;
 
 		            if (obj.right !== null){
@@ -232,23 +227,19 @@
 		            }
 		        }
 		    }
-	        //start with the root
 	        inOrder(obj);
 
 	        return size;
-		},
-
+		};
 		//Convert BST tree to Array 
-		toArray : function(type){
+		this.toArray = function(type){
 			var obj = this.tree,
 				arr = [],
 				method = "inorder";
 
-			if(type){
-
-			}else{
+			if(!type){
 				type = method;
-			}	
+			}
 
 			function inOrder(obj){
 		        if (obj){
@@ -304,10 +295,9 @@
 				postOrder(obj);
 			}
 	        return arr;
-		},
-
+		};
 		//Convert BST tree to String
-		toString : function(){
+		this.toString = function(){
 			var obj = this.tree,
 				arr = [];
 			function inOrder(obj){
@@ -329,10 +319,9 @@
 	        inOrder(obj);
 
 	        return arr.toString();
-		},
-
+		};
 		//Check maximum Depth in BST
-		maxDepth : function(){
+		this.maxDepth = function(){
 			var obj = this.tree,
 				size = 0,
 				PathArr = [],
@@ -373,10 +362,9 @@
 	        PathArr.sort();
 	        PathArr.reverse();
 	        return PathArr[0];
-		},
-
+		};
 		//Remove element in BST
-		remove : function(value){
+		this.remove = function(value){
 	    
 	        var found       = false,
 	            parent      = null,
@@ -528,7 +516,6 @@
 	        	return false;
 	        }   
 	    }
-
 	};
 	
 	exports.BST = BST;
