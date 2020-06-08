@@ -141,9 +141,9 @@
 						flag = false;
 						return true;
 					}else if(x > node.element){
-						node = node.rightchildchild;
+						node = node.rightchild;
 					}else if(x < node.element){
-						node = node.leftchildchild;
+						node = node.leftchild;
 					}	
 				}else{
 					return false;
@@ -158,8 +158,8 @@
 
 				if(node != null){
 					while(flag){
-						if(node.leftchildchild){
-							node = node.leftchildchild;
+						if(node.leftchild){
+							node = node.leftchild;
 						}else{
 							flag = false;
 							return node.element;
@@ -176,8 +176,8 @@
 
 				if(node != null){
 					while(flag){
-						if(node.rightchildchild){
-							node = node.rightchildchild;
+						if(node.rightchild){
+							node = node.rightchild;
 						}else{
 							flag = false;
 							return node.element;
@@ -521,4 +521,3 @@
 	exports.BST = BST;
 
 })(typeof exports === 'undefined'? window: exports);
-	
